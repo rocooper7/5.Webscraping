@@ -24,7 +24,7 @@ class QuotesSpider(scrapy.Spider):
 
     def parse_only_quotes(self, response, **kwargs):      #Se crea el metodo para extraer las quotes y con kwargs se desempaqueta mis quotes 
         if kwargs:
-            quotes = kwargs['quotes']   #Accedemos a los valores de quotes, quotes es una lista 
+            quotes = kwargs['quotes']   #Accedemos a los valores de quotes, quotes es un dicc con una lista 
         quotes.extend(response.xpath('//span[@class="text" and @itemprop="text"]/text()').getall()) #A la lista quotes se le aplica la funcion de lista extend para seguir agregando info
         #En este caso se agrega las quotes de la segunda pagina 
         next_page_button_link = response.xpath('//ul[@class="pager"]//li[@class="next"]/a/@href').get()
